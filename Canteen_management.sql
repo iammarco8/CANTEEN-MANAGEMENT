@@ -133,3 +133,16 @@ CREATE TABLE `cantee_management`.`orders` (
   `beverage` INT NULL,
   `day` DATE NULL,
   PRIMARY KEY (`id`));
+
+ALTER TABLE `cantee_management`.`admin` 
+ADD COLUMN `password` VARCHAR(45) NOT NULL AFTER `email`;
+
+ALTER TABLE `cantee_management`.`students` 
+ADD COLUMN `password` VARCHAR(45) NOT NULL AFTER `email`,
+CHANGE COLUMN `email` `email` VARCHAR(45) NOT NULL ;
+
+ALTER TABLE `cantee_management`.`students` 
+ADD COLUMN `image` VARCHAR(255) NULL AFTER `password`;
+
+ALTER TABLE `cantee_management`.`admin` 
+ADD COLUMN `image` VARCHAR(255) NULL AFTER `password`;
