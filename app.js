@@ -3,15 +3,16 @@ import {getRandomHexValues} from './utils/utils.js';
 import { decryptPW } from "./utils/auth.js";
 import fileUpload from "express-fileupload";
 import session from 'express-session';
-// import {} from ;
+import { adminPage } from "./rout/adminRout.js";
 
 const port = 7777;
 const app = express();
 
-app.use('/',homePage);
-app.use('/',adminPage);
-app.use('/',aboutPage);
-app.use('/',)
+app.use('/', homePage);//student veiw
+app.use('/', adminPage);
+app.use('/', contactPage);
+app.use('/', aboutPage);
+app.use('/', loginPage)
 
 app.set('veiw engine', 'ejs')
 app.use(express.urlencoded({
@@ -41,3 +42,23 @@ app.use(session({
 app.listen(port, ()=>{
     console.log('type: localhost:${port}')
 })
+
+// creates the student 
+// adminPage.post('/createStudent', async(req,res)=>{
+//     const newStudent = new Object();
+//     let vlife = ""
+//     if(req.files){
+//         vfile = `${getRandomHex(8)}_${req.files.image.name}`
+//     }
+//     newStudent.first_name = req.body.first_name,
+//     newStudent.last_name = req.body.last_name,
+//     newStudent.location = req.body.location,
+//     newStudent.allergies = req.body.allergies,
+//     newStudent.image = vfile,
+//     newStudent.password = req.body.password
+//     if(req.files){
+//         req.files.image.mv('./uploads'+ vfiles)
+//     }
+//     await createStudent(newStudent)
+//     res.redirect('/stdents')
+// });

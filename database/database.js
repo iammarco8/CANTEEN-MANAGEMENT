@@ -17,31 +17,31 @@ const pool = mysql.createPool({
 export const getAllAdmin= async()=>{
     const [list] = await pool.query(`SELECT * FROM admin`)
     return list
-}
+};
 export const getAllStudents= async ()=>{
     const [list] = await pool.query(`SELECT * FROM students`)
     return list;
-}
+};
 export const getAllLunchDish= async ()=>{
     const [list] = await pool.query(`SELECT * FROM main_dish`)
     return list;
-}
+};
 export const getAllLunchStyles= async()=>{
     const [list] = await pool.query(`SELECT * FROM main_style`)
     return list;
-}
+};
 export const getAllSidesDish= async()=>{
     const [list] = await pool.query(`SELECT * FROM side_dish`)
     return list;
-}
+};
 export const getAllSideStyle= async()=>{
     const [list] = await pool.query(`SELECT * FROM side_style`)
     return list;
-}
+};
 export const getAllBeverages= async()=>{
     const [list] = await pool.query(`SELECT * FROM beverage`)
     return list;
-}
+};
 export const getAllOrders= async()=>{
     const [list] = await pool.query(`
     SELECT 
@@ -50,7 +50,8 @@ export const getAllOrders= async()=>{
     , sd.name, sd.image, ss.style, ss.image
     , b.name
     , o.day
-    FROM students st, main_dish md, main_style ms, side_dish sd, side_style ss, beverage b, orders o 
+    FROM students st, main_dish md, main_style ms, 
+    side_dish sd, side_style ss, beverage b, orders o 
     WHERE 
     o.student_id = st.id
     , o.main_dish_id = md.id
@@ -60,14 +61,15 @@ export const getAllOrders= async()=>{
     , o.beverage = b.id
     , o.d;`)
     return list;
-}
+};
 export const getAllMenu= async()=>{
     const [list] = await pool.query(`
     SELECT 
     md.name, md.image, ms.style, ms.image
     , sd.name, sd.image, ss.style, ss.image
     , b.name, b.image
-    FROM main_dish md, main_style ms, side_dish sd, side_style ss, beverage b, menu m
+    FROM main_dish md, main_style ms, side_dish sd, side_style ss,
+    beverage b, menu m
     WHERE 
     m.main_dish = md.id,
     m.main_style = ms.id,
@@ -75,48 +77,48 @@ export const getAllMenu= async()=>{
     m.side_style = ss.id,
     m.beverage = b.id;`)
     return list;
-}
+};
 // ______________________________________________
 
 // [[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]
 //              single items list
 // [[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]
-export const getSingleAdmin= async(id)=>{
+export const getSingleAdmin = async(id)=>{
     const admin = await pool.query(`SELECT * FROM admin
     WHERE id = ?`, [id]);
     return admin[0];
-}
-export const getSingleStudent= async(id)=>{
+};
+export const getSingleStudent = async(id)=>{
     const student = await pool.query(`SELECT * FROM students
     WHERE id = ?`, [id]);
     return student[0];
-}
-export const getSingleMainDish= async(id)=>{
+};
+export const getSingleMainDish = async(id)=>{
     const maindish = await pool.query(`SELECT * FROM main_dish
     WHERE id = ?`, [id]);
     return maindish[0];
-}
-export const getSingleMainStyle= async(id)=>{
+};
+export const getSingleMainStyle = async(id)=>{
     const mainstyle = await pool.query(`SELECT * FROM main_style
     WHERE id = ?`, [id]);
     return mainstyle[0];
-}
-export const getSingleSideDish= async(id)=>{
+};
+export const getSingleSideDish = async(id)=>{
     const sidedish = await pool.query(`SELECT * FROM side_dish
     WHERE id = ?`, [id]);
     return sidedish
-}
-export const getSingleSideStyle= async(id)=>{
+};
+export const getSingleSideStyle = async(id)=>{
     const sidestyle = await pool.query(`SELECT * FROM side_style
     WHERE id = ?`, [id]);
     return sidestyle[0]
-}
-export const getSingleBeverage= async(id)=>{
+};
+export const getSingleBeverage = async(id)=>{
     const beverage = await pool.query(`SELECT * FROM beverage
     WHERE id = ?`, [id]);
     return beverage[0]
-}
-export const getSingleOrder= async(id)=>{
+};
+export const getSingleOrder = async(id)=>{
     const order = await pool.query(`
     SELECT
     st.first_name, st.last_name, st.location
@@ -124,7 +126,8 @@ export const getSingleOrder= async(id)=>{
     , sd.name, sd.image, ss.style, ss.image
     , b.name
     , o.day
-    FROM students st, main_dish md, main_style ms, side_dish sd, side_style ss, beverage b, orders o 
+    FROM students st, main_dish md, main_style ms, side_dish sd, 
+    side_style ss, beverage b, orders o 
     WHERE 
     o.student_id = st.id
     , o.main_dish_id = md.id
@@ -132,9 +135,26 @@ export const getSingleOrder= async(id)=>{
     , o.side_dish = sd.id
     , o.side_style = ss.id
     , o.beverage = b.id
-    , o.student_id = ?`[id]);
+    , o.student_id = ?`,[id]);
     return order[0]
-}
+};
+export const getSingleMenu = async(id)=>{
+    const item = await pool.query(`
+    SELECT 
+    md.name, md.image, ms.style, ms.image
+    , sd.name, sd.image, ss.style, ss.image
+    , b.name, b.image
+    FROM main_dish md, main_style ms, side_dish sd, side_style ss,
+    beverage b, menu m
+    WHERE 
+    m.main_dish = md.id,
+    m.main_style = ms.id,
+    m.side_main = sd.id,
+    m.side_style = ss.id,
+    m.beverage = b.id
+    m.id = ?;`,[id]);
+    return item[0];
+};
 // ________________________________________
 
 // [[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]
@@ -148,7 +168,7 @@ export const createStudent= async(student)=>{
     [student.first_name, student.last_name, 
     student.location, student.allergies, student.image, student.password]);
     return create;
-}
+};
 export const createAdmin= async(admin)=>{
     const create = await pool.query(`
     INSERT INTO admin
@@ -157,42 +177,42 @@ export const createAdmin= async(admin)=>{
     [admin.first_name, admin.last_name, 
     admin.position, admin.email, admin.image, admin.passowrd]);
     return create;
-}
+};
 export const createMainDish= async(lunch)=>{
     const create = await pool.query(`
     INSERT INTO main_dish
     (name, available, image);`,
     [lunch.name, lunch.available, lunch.image]);
     return create;
-}
+};
 export const createMainStyle= async(lunchstyle)=>{
     const create = await pool.query(`
     INSERT INTO main_style
     (style, available, image);`,
     [lunchstyle.style, lunchstyle.available, lunchstyle.image]);
     return create;
-}
+};
 export const createSideDish= async(side)=>{
     const create = await pool.query(`
     INSERT INTO side_dish
     (name, available, image);`,
     [side.name, side.available, side.image]);
     return create;
-}
+};
 export const createSideStyle= async(sidestyle)=>{
     const create = await pool.query(`
     INSERT INTO side_style
     (style, available, image);`,
     [sidestyle.style, sidestyle.available, sidestyle.image]);
     return create;
-}
+};
 export const createBeverage= async(drink)=>{
     const create = await pool.query(`
     INSERT INTO beverage
     (name, available, image);`,
     [drink.name, drink.available, drink.image]);
     return create;
-}
+};
 export const createMenu = async(menu)=>{
     const create = await pool.query(`
     INSERT INTO menu
@@ -200,7 +220,7 @@ export const createMenu = async(menu)=>{
     [menu.main_dish, menu.main_style, menu.side_main, 
     menu.side_style, menu.beverage]);
     return create;
-}
+};
 export const createOdrer = async(menu)=>{
     const create = await pool.query(`
     INSERT INTO orders
@@ -210,7 +230,7 @@ export const createOdrer = async(menu)=>{
     menu.side_dish_id, menu.side_style_id, menu.beverage,
     menu.day]);
     return create 
-}
+};
 // ________________________________________
 
 // [[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]
