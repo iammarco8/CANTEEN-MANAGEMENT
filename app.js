@@ -4,12 +4,13 @@ import {getRandomHexValues} from './utils/utils.js';
 import { decryptPW } from "./utils/auth.js";
 import fileUpload from "express-fileupload";
 import session from 'express-session';
-import { adminPage } from "./rout/adminRout.js";
+import { adminPage, } from "./rout/adminRout.js";
+import { homePage, } from "./rout/homeRout.js";
 
 const port = 7777;
 const app = express();
 
-app.use('/', homePage);//student veiw
+app.use('/', homePage); // student veiw  main veiw
 app.use('/', adminPage);
 app.use('/', contactPage);
 app.use('/', aboutPage);

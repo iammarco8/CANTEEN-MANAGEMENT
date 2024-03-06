@@ -132,8 +132,15 @@ export const getSingleOrder= async(id)=>{
     , o.side_dish = sd.id
     , o.side_style = ss.id
     , o.beverage = b.id
-    , o.student_id = ?`[id]);
+    , o.student_id = ? AND o.day = NOW()`[id]);
     return order[0]
+}
+// this selects the most chosen menu options
+export const getPopularOrder= async()=>{
+    const [best] = await pool.query(`
+    SELECT * FROM menu
+    ORDER BY counter Desc;`);
+    return best
 }
 // ________________________________________
 
@@ -309,6 +316,13 @@ export const editMenu = async(eMenu)=>{
     [eMenu.main_dish, eMenu.main_style, eMenu.side_main, 
     eMenu.side_style, eMenu.beverage, eMenu.id]);
     return edit;
+}
+export const orderCounter = async(id)=>{
+    const plus = await pool.query(`
+    UPDATE menu
+    SET counter = counter + 1
+    WHERE id = ?`,[id]);
+    return plus;
 }
 // ________________________________________
 

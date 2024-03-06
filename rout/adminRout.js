@@ -1,15 +1,24 @@
 // <<<<<<< HEAD
 import express from 'express';
 import { 
-    getAllAdmin, getAllMenu, getAllOrders, getSingleAdmin, getAllBeverages,
-    getAllStudents, getSingleStudent, getSingleOrder,
-    getSingleMainDish, getAllSidesDish, getSingleBeverage,
-    createAdmin, createMainDish, createMainStyle, createSideDish, createSideStyle,
-    createBeverage, createMenu, editAdmin, editMainDish, editMainStyle, editMenu, editSideDish,
-    editSideStyle, editBeverage, deleteAdmin, deleteMainDish, deleteMainStyle, deleteMenu, deleteOrders,
-    deleteSideDish, deleteSideStyle, deleteStudent, adminUserExists, isLoginCorrect,
-    searchAdmin, searchStudent, getAllLunchDish, getAllLunchStyles, getAllSideStyle, 
-    getSingleMainStyle, getSingleSideDish, getSingleSideStyle, getSingleMenu, editSideDish, editSideStyle, deletBeverage
+    getAllAdmin, getAllStudents, getAllMenu, getAllOrders, getAllLunchDish, 
+    getAllLunchStyles, getAllSidesDish, getAllSideStyle, getAllBeverages,
+    // 
+    getSingleAdmin, getSingleStudent, getSingleOrder, getSingleMainDish, 
+    getSingleMainStyle, getSingleSideDish, getSingleSideStyle, 
+    getSingleMenu, getSingleBeverage,
+    // 
+    createAdmin, createMainDish, createMainStyle, createSideDish, 
+    createSideStyle, createBeverage, createMenu, 
+    // 
+    editAdmin, editMainDish, editMainStyle, editMenu, 
+    editSideDish, editSideStyle, editBeverage, 
+    // 
+    deleteAdmin, deleteMainDish, deleteMainStyle, deleteMenu, deleteOrders,
+    deleteSideDish, deleteSideStyle, deleteStudent, deletBeverage,
+    // 
+    adminUserExists, isLoginCorrect,
+    searchAdmin, searchStudent
 } from '../database/database.js';
 import { getRounds } from 'bcryptjs';
 

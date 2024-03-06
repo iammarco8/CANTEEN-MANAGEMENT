@@ -146,3 +146,6 @@ ADD COLUMN `image` VARCHAR(255) NULL AFTER `password`;
 
 ALTER TABLE `cantee_management`.`admin` 
 ADD COLUMN `image` VARCHAR(255) NULL AFTER `password`;
+
+ALTER TABLE `cantee_management`.`menu` 
+ADD COLUMN `counter` INT NULL DEFAULT 0 AFTER `beverage`;
