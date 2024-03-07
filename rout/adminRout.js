@@ -25,7 +25,7 @@ import { getRounds } from 'bcryptjs';
 export const adminPage = express.Router()
 
 [[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]
-//                   View Pages
+//                   View Pages (read)
 [[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]
 
 // this is the page projected for the by the wireframe.
@@ -186,7 +186,7 @@ adminPage.get('/adminCreateBeverage', async(req,res)=>{
     });
 });
 [[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]
-//                   post functions
+//               create functions
 [[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]
 
 // this creates the administrator

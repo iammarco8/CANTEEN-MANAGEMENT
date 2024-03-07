@@ -153,7 +153,8 @@ export const createStudent= async(student)=>{
     (first_name, last_name, location, allergies, email, image, password)
     value (?,?,?,?,?,?,?);`,
     [student.first_name, student.last_name, 
-    student.location, student.allergies, student.image, student.password]);
+    student.location, student.allergies, student.email, 
+    student.image, student.password]);
     return create;
 }
 export const createAdmin= async(admin)=>{
@@ -239,10 +240,10 @@ export const editStudent = async(eStudent)=>{
     UPTADE students
     SET
     first_name = ?, last_name = ?, location = ?, 
-    allergies = ?, image = ?, passowrd = ?
+    allergies = ?, email = ?, image = ?, passowrd = ?
     WHERE id = ?`,
     [eStudent.first_name, eStudent.last_name, 
-    eStudent.location, eStudent.allergies, 
+    eStudent.location, eStudent.allergies, eStudent.email,
     eStudent.image, eStudent.password, eStudent.id]);
     return edit;
 }
