@@ -16,6 +16,7 @@ import {
 import { getRounds } from 'bcryptjs';
 import { name } from 'ejs';
 import { escape } from 'mysql2';
+import { Email } from '../utils/email.js';
 
 export const homePage = express.Router()
 
@@ -138,7 +139,15 @@ homePage.post('/createStudent', async(req,res)=>{
     newStudent.email = req.body.email,
     newStudent.image = vfile,
     newStudent.password = req.body.password
-    await createStudent(newStudent);
+    const result = await createStudent(newStudent);
+    return result;
+    // console.log(result )
+    if(result{0}.isertId){
+        const id =result[0]insertId;
+        const data = await getSingleStudent(id)
+        const email = new Email(data)
+        await email.sendMail('email', 'Welcome', data)
+    }
 //  await getSingleStudent(newStudent.id)
     //  (the plan was to pull the id from the newly created student 
     //  and pass the id to the param to accomadate th req.params features
@@ -148,7 +157,7 @@ homePage.post('/createStudent', async(req,res)=>{
     //  (this should pass the id into the params instead)
 
     // this is a test
-    res.redirect('/studentHome/'+ newStudent.id)
+    res.redirect('/studentHome/'+ result.id)
 });
 // order create 
 homePage.post('/createOrder', async(req,res)=>{

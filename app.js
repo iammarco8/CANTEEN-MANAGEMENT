@@ -6,6 +6,7 @@ import fileUpload from "express-fileupload";
 import session from 'express-session';
 import { adminPage, } from "./rout/adminRout.js";
 import { homePage, } from "./rout/homeRout.js";
+import morgan from "morgan";
 
 const port = 7777;
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({
     extended:true
 }));
 
+app.use(morgan('dev'))
 app.use(express.static('public'));
 app.use('/assets', express.static('assets'));
 app.use(

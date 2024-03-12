@@ -10,13 +10,32 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     <title><%= subject %></title>
 </head>
 <body>
-    <center>
-        <table width="100%">
+    <center class="wrapper">
+        <table class="main">
             <tr>
+                <td class="padding"></td>
                 <td>
-                    
+                    <table style=" background-color: #c3b091;">
+                        <tr>
+                            <td style="line-height: 1.5;">
+                                <h1> <%= student_first_name %></h1>
+                                <p>
+                                    Your sign up attempt was Successful.
+                                    The User name registered to your account is:
+                                    "<%= student_first_name %>"
+                                    <br>
+                                    "<%= student_last_name %>"
+                                    Email: <a href="mailto:marco.duhaney@gmail.com">marco.duhaney@gmail.com</a>
+                                    for any and all concerns.
+                                    Tel: <a href="tel:1-876-506-4006">1-876-506-4006</a>
+                                    <!-- u may need to include the contactt info here -->
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
+            <td class="padding"></td>
         </table>
     </center>
 </body>
